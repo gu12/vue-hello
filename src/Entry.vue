@@ -1,24 +1,34 @@
 <template>
     <div>
         <Mytree  :data.sync="data"
-                v-if="data.length"
+                v-if="data.length ==111"
                 :fileDrop="fileDrop"
                 :diectoryDrop="diectoryDrop"
                 @delete="deleteFn"
         ></Mytree>
+        <show-swiper></show-swiper>
+<!--        <img :src="require(`../src/assets/logo.png`)" alt="">-->
+
+
+
 
     </div>
 </template>
 <script>
     import Mytree from './components/MyTree'
+    import ShowSwiper from "./views/ShowSwiper";
+
+
     import {getTreeList} from "./api/api.js"
 
     export default {
         components:{
-            Mytree
+            Mytree,
+            ShowSwiper
         },
         data () {
             return {
+
                 data: [],
                 fileDrop:[
                     {text:'rm',value:'删除文件'}
