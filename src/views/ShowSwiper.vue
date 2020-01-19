@@ -45,6 +45,7 @@
     .box{
         margin: 0 auto;
         width: 320px;
+
     }
     .content{
         width: 300px;

@@ -1,6 +1,6 @@
 <template>
     <transition>
-        <div v-if="isShow">
+        <div v-if="isShow" :class="{reverse}">
             <slot></slot>
 
         </div>
@@ -18,13 +18,15 @@
         },
         data(){
             return {
-                selected:''
+                selected:'',
+                reverse:''
             }
 
         },
         computed:{
             isShow(){
                 return this.selected === this.name
+
             }
         }
 
@@ -35,10 +37,17 @@
         transition: all .8s linear;
     }
     .v-leave-to{
-        transform: translate(-100%);
-    }
+          transform: translate(-100%);
+      }
     .v-enter{
         transform: translate(100%);
+    }
+
+    .v-leave-to.reverse{
+        transform: translate(100%);
+    }
+    .v-enter.reverse{
+        transform: translate(-100%);
     }
     .v-enter-active{
         position: absolute;

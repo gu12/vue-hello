@@ -1,12 +1,12 @@
 <template>
     <div>
-            <el-tree
-                    :data="allData"
-                    default-expand-all
-                    :render-content="render"
-                    :expand-on-click-node="false"
+        <el-tree
+                :data="allData"
+                default-expand-all
+                :render-content="render"
+                :expand-on-click-node="false"
 
-            ></el-tree>
+        />
     </div>
 </template>
 
