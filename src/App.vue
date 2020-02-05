@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Entry></Entry>
+<!--    <Entry></Entry>-->
+    <router-link to="/todo">Go to Bar</router-link>
+    <router-link to="/datepicker">datepicker</router-link>
+
+      <router-view></router-view>
 
   </div>
 </template>
