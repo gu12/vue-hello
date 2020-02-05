@@ -12,9 +12,8 @@
             </div>
             <div class="pannel-content">
                 <div class="days">
-                    //列出一个6 * 7 的列表
                     <div v-for="i in 6 " :key="i">
-                        <span v-for="j in 7" :key="j">
+                        <span class="cell" v-for="j in 7" :key="j" :class="[{notCurrentMonth:!isCurrentMonth(visibeDays[(i-1)*7+(j-1)])}]">
                                 {{visibeDays[(i-1)*7+(j-1)].getDate()}}
                         </span>
                     </div>
@@ -79,13 +78,15 @@
             visibeDays(){
                 //先获取当前是周几 循环42天
                 let {year,month} = utils.getYearMonthDay(this.value)
+                console.log(year, month);
                 //获取当前月份的第一天
-                let currentFirstday = utils.getDate(year,month,1)
+                let currentFirstday = utils.getDate(year,month-1,1)
                 //获取是周几
                 let week = currentFirstday.getDay()
 
                 //获取开始日期
                let startDay =  currentFirstday - week * 60 * 60 * 1000 * 24
+                console.log(startDay,week);
                 //循环42天
                 let arr = []
                 for (let i = 0; i < 42; i++) {
@@ -107,6 +108,12 @@
             },
             blur(){
                 this.isVisible = false
+            },
+            isCurrentMonth(date){
+                //年 月 相同即为当月
+                let {year,month} = utils.getYearMonthDay(this.value)
+                let {year:y,month:m} = utils.getYearMonthDay(date)
+                return year === y && month === m
             }
         }
     }
@@ -114,7 +121,33 @@
 
 <style lang="scss" scoped>
     .pannel{
+        width: 32*7px;
         position: absolute;
+        background: #fff;
+        box-shadow: 2px 2px 2px orange,-2px -2px 2px orange;
+        .pannel-nav{
+            display: flex;
+            justify-content: space-around;
+            height: 30px;
+        }
+        .pannel-content{
+            .cell{
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                width: 32px;
+                height: 32px;
+            }
+
+        }
+        .pannel-footer{
+            height: 30px;
+            text-align: center;
+
+        }
+    }
+    .notCurrentMonth{
+        color: red;
     }
 
 </style>
