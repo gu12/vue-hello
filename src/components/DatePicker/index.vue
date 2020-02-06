@@ -4,17 +4,25 @@
         <div class="pannel" v-if="isVisible">
             <div class="pannel-nav">
                 <span>&lt;</span>
-                <span>&lt;&lt;</span>
-                <span>xxx年</span>
-                <span>xxx月</span>
-                <span>&gt;&gt;</span>
+                <span @click="prevMonth">&lt;&lt;</span>
+                <span>{{time.year}}年</span>
+                <span>{{time.month}}月</span>
+                <span @click="nextMonth">&gt;&gt;</span>
                 <span>&gt;</span>
             </div>
             <div class="pannel-content">
                 <div class="days">
+                    <span v-for="j in 7" :key="`_`+ j" class="cell">
+                        {{weekDays[j-1]}}
+                    </span>
                     <div v-for="i in 6 " :key="i">
-                        <span class="cell" v-for="j in 7" :key="j" :class="[{notCurrentMonth:!isCurrentMonth(visibeDays[(i-1)*7+(j-1)])}]">
-                                {{visibeDays[(i-1)*7+(j-1)].getDate()}}
+                        <span @click="chooseDate(visibeDays[format(i,j)])" class="cell" v-for="j in 7" :key="j" :class="[
+                            {notCurrentMonth:!isCurrentMonth(visibeDays[format(i,j)])},
+                            {today:isToday(visibeDays[format(i,j)])},
+                            {isSelected:isSelect(visibeDays[format(i,j)])}
+
+                            ]">
+                                {{visibeDays[format(i,j)].getDate()}}
                         </span>
                     </div>
                 </div>
@@ -67,8 +75,12 @@
             }
         },
         data(){
+            let {year,month} = utils.getYearMonthDay(this.value)
             return{
-                isVisible:false   //控制面板是否可见
+                weekDays:['日','一','二','三','四','五','六'],
+                isVisible:false, //控制面板是否可见
+                time:{year,month}
+
             }
         },
         mounted() {
@@ -77,7 +89,7 @@
         computed:{
             visibeDays(){
                 //先获取当前是周几 循环42天
-                let {year,month} = utils.getYearMonthDay(this.value)
+                let {year,month} = utils.getYearMonthDay(utils.getDate(this.time.year,this.time.month-1,1))
                 console.log(year, month);
                 //获取当前月份的第一天
                 let currentFirstday = utils.getDate(year,month-1,1)
@@ -103,6 +115,9 @@
             }
         },
         methods:{
+            format(i,j){
+                return  (i-1)*7+(j-1)
+            },
             focus(){
                 this.isVisible = true
             },
@@ -111,9 +126,35 @@
             },
             isCurrentMonth(date){
                 //年 月 相同即为当月
-                let {year,month} = utils.getYearMonthDay(this.value)
+                let {year,month} = utils.getYearMonthDay(utils.getDate(this.time.year,this.time.month-1,1))
                 let {year:y,month:m} = utils.getYearMonthDay(date)
                 return year === y && month === m
+            },
+            chooseDate(date){
+                this.time = utils.getYearMonthDay(date)
+                console.log(this.time);
+                this.$emit('input',date)
+
+            },
+            isSelect(date){
+                console.log(date);
+                let {year,month,day} = utils.getYearMonthDay(this.value)
+                let {year:y,month:m,day:d} = utils.getYearMonthDay(date)
+                return year === y && month === m && day === d
+            },
+
+            isToday(date){
+                let {year,month,day} = utils.getYearMonthDay(new Date())
+                let {year:y,month:m,day:d} = utils.getYearMonthDay(date)
+                return year === y && month === m && day === d
+
+            },
+            prevMonth(){
+                this.time.month --
+
+            },
+            nextMonth(){
+
             }
         }
     }
@@ -137,7 +178,12 @@
                 align-items: center;
                 width: 32px;
                 height: 32px;
+                box-sizing: border-box;
+                cursor: pointer;
             }
+            .cell:hover{
+            border: 1px solid deeppink;
+        }
 
         }
         .pannel-footer{
@@ -147,7 +193,15 @@
         }
     }
     .notCurrentMonth{
-        color: red;
+        color: gray;
+    }
+    .today{
+        background: orange;
+        color: white;
+    }
+    .isSelected{
+        background: red;
+        color: white;
     }
 
 </style>
