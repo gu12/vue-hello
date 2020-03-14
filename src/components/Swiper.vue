@@ -111,7 +111,6 @@
                 console.log('//');
                 this.TIMER  =   setInterval(()=>{
                     let index = this.Index
-                    console.log('setintelval',index);
                     let newIndex = index + 1
                     this.select(newIndex)
 

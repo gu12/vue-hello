@@ -24,7 +24,17 @@ const routes = [
     path: '/datepicker',
     name: 'datepicker',
     component: () => import(/* webpackChunkName: "about" */ '../views/DatePicker')
-  }
+  },
+   {
+      path: '/myswiper',
+      name: 'myswiper',
+      component: () => import(/* webpackChunkName: "about" */ '../views/ShowSwiper')
+   },
+   {
+      path: '/mytree',
+      name: 'mytree',
+      component: () => import(/* webpackChunkName: "about" */ '../views/Mytree/Entry')
+   }
 ]
 
 const router = new VueRouter({

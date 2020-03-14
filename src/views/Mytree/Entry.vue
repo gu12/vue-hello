@@ -1,13 +1,11 @@
 <template>
     <div>
         <Mytree  :data.sync="data"
-                v-if="data.length ==111"
+                v-if="data.length"
                 :fileDrop="fileDrop"
                 :diectoryDrop="diectoryDrop"
                 @delete="deleteFn"
         ></Mytree>
-        <show-swiper></show-swiper>
-<!--        <img :src="require(`../src/assets/logo.png`)" alt="">-->
 
 
 
@@ -15,16 +13,14 @@
     </div>
 </template>
 <script>
-    import Mytree from './components/MyTree'
-    import ShowSwiper from "./views/ShowSwiper";
+    import Mytree from '../../components/MyTree'
 
 
-    import {getTreeList} from "./api/api.js"
+    import {getTreeList} from "../../api/api.js"
 
     export default {
         components:{
             Mytree,
-            ShowSwiper
         },
         data () {
             return {
