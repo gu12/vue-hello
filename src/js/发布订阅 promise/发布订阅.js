@@ -3,16 +3,12 @@ let fs = require('fs')
 
 function EventEmitter(){
    this._arr = []
-
 }
-
 EventEmitter.prototype.on = function(callback){
    this._arr.push(callback)
 }
-
 EventEmitter.prototype.emit = function(){
    this._arr.forEach(fn => fn.apply(this,arguments))
-
 }
 let e = new EventEmitter()
 let school = {}
