@@ -1,5 +1,4 @@
 function Promise(executor) {
-
    //在内部定义一个状态
    let self = this
    self.status = 'pending'
@@ -12,7 +11,6 @@ function Promise(executor) {
          self.value = value
          self.status = 'resolved'
          self.onResolveCallbacks.forEach(fn => fn())
-
       }
    }
    function reject(reason) {
@@ -20,35 +18,24 @@ function Promise(executor) {
          self.status = 'rejected'
          self.reason = reason
          self.onRejectCallbacks.forEach(fn => fn())
-
       }
-
    }
    executor(resolve,reject)
-
 }
 Promise.prototype.then = function(onFulfilled,onReject){
    let self = this
    if(self.status === 'resolved'){
       onFulfilled(self.value)
-      console.log('？？？');
-
    }
    if(self.status === 'rejected'){
       onReject(self.reason)
    }
-   console.log(1);
    if(self.status === 'pending'){
-      console.log('1是');
-
       self.onResolveCallbacks.push(function () {
          onFulfilled(self.value)
       })
-      console.log(self.onResolveCallbacks);
-
       self.onRejectCallbacks.push(function () {
          onReject(self.reason)
-
       })
 
    }

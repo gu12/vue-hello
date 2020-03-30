@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #el {
+      width: 50px;
+      height: 50px;
+      background: green;
+      transition: all 1s;
+      color: white;
+      line-height: 50px;
+      text-align: center;
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="el">div</div>
+  <button id="btn">开始</button>
+  <script>
+  // 动画
+
+// function moveTo(el, x, y, cb) {
+// 	el.style.transform = `translate(${x}px, ${y}px)`;
+// 	setTimeout(function() {
+// 		cb && cb();
+// 	}, 1000);
+// }
+
+// let el = document.querySelector('div');
+
+// document.querySelector('button').addEventListener('click', e => {
+// 	moveTo(el, 100, 100, function() {
+// 		moveTo(el, 200, 200, function() {
+// 			moveTo(el, 30, 20, function() {
+// 				moveTo(el, 100, 300, function() {
+// 					moveTo(el, 130,20, function() {
+// 						moveTo(el, 0, 0, function() {
+// 							console.log('移动结束!');
+// 						});
+// 					});
+// 				});
+// 			});
+// 		});
+// 	});
+// });
+
+// promise
+
+function moveTo(el, x, y) {
+	return new Promise(resolve => {
+		el.style.transform = `translate(${x}px, ${y}px)`;
+		setTimeout(function() {
+			resolve();
+		}, 1000);
+	});
+}
+let el = document.querySelector('div');
+document.querySelector('button').addEventListener('click', e => {
+	moveTo(el, 100, 100)
+		.then(function() {
+			return moveTo(el, 200, 200);
+		})
+		.then(function() {
+            return moveTo(el, 300, 300);
+		})
+		.then(function() {
+            return moveTo(el, 400, 400);
+        })
+        .then(function() {
+            return moveTo(el, 0, 0);
+		});
+});
+  
+  
+  </script>
+</body>
+</html>
