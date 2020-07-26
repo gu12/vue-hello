@@ -34,7 +34,12 @@ const routes = [
       path: '/mytree',
       name: 'mytree',
       component: () => import(/* webpackChunkName: "about" */ '../views/Mytree/Entry')
-   }
+   },
+   {
+    path: '/emit',
+    name: 'emit',
+    component: () => import(/* webpackChunkName: "about" */ '../views/emit/parent')
+ }
 ]
 
 const router = new VueRouter({
