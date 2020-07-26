@@ -1,20 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    name: 'datepicker',
+    component: () => import(/* webpackChunkName: "about" */ '../views/DatePicker')
   },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  },
+ 
   {
     path: '/todo',
     name: 'todo',
@@ -39,7 +34,13 @@ const routes = [
     path: '/emit',
     name: 'emit',
     component: () => import(/* webpackChunkName: "about" */ '../views/emit/parent')
+   },
+   {
+    path: '/cascader',
+    name: 'cascader',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Cascader')
  }
+
 ]
 
 const router = new VueRouter({

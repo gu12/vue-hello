@@ -5,6 +5,7 @@
     <router-link to="/myswiper">myswiper</router-link>
     <router-link to="/mytree">mytree</router-link>
     <router-link to="/emit">emit</router-link>
+    <router-link to="/cascader">层联</router-link>
 
       <router-view></router-view>
 
