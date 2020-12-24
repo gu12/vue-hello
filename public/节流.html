@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div><button class="btn">点击</button></div>
+    <script>
+        let btn = document.querySelector('.btn')
+        function throttle (fn, interval) {
+            let _self = fn;
+            let timer;
+            let startTime = true;
+            return function () {
+                let args = arguments,
+                _me = this;
+                if (startTime) {
+                    _self.apply(_me, args)
+                    startTime = false
+                    return false
+                }
+                if (timer) {
+                    return false
+                }
+                timer = setTimeout(function () {
+                    clearTimeout(timer);
+                    timer = null;
+                    _self.apply(_me, args);
+                }, 1000)
+            }
+        }
+        let n = 0;
+        function test () {
+                console.log(++n)
+            }
+        btn.onclick = throttle(test, 1000)
+        
+    </script>
+</body>
+</html>

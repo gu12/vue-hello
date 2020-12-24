@@ -1,26 +1,18 @@
-const  clickOutside={ 
-    inserted(el,bindings,vnode){
-
-        function outside(e){
-            if(e.target === el || el.contains(e.target)){
+const clickOutside = {
+    inserted: function (el, binding) {
+        function hide(e) {
+            if (el === e.target || el.contains(e.target)) {
                 return
             }
-            bindings.value()
+            binding.value()
         }
-
-        el.outside = outside
-        document.addEventListener('click',outside)
-
-
+        el._hide = hide
+        document.addEventListener('click', el._hide)
 
     },
-
-    unbind(el, binding) {
-        // 解除事件监听
-        document.removeEventListener("click", el.outside);
-        delete el.outside;
-      }
-
+    unbind(el) {
+        document.removeEventListener(el._hide)
+    }
 }
 
 export default clickOutside

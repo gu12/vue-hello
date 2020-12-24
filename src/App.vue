@@ -7,6 +7,7 @@
     <router-link to="/emit">emit</router-link>
     <router-link to="/cascader">层联</router-link>
 
+    <button v-copy=123>copy</button>
       <router-view></router-view>
 
   </div>

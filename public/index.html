@@ -6,12 +6,40 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>hello-world</title>
+    
   </head>
   <body>
     <noscript>
       <strong>We're sorry but hello-world doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <div id="app">
+      <button onclick='aaaa()'>按钮</button>
+    </div>
+    <script>
+      function aaaa(){
+        let arr1 = [1,1,2,3,4,5]
+        let arr2 = [5,3,6,7,8]
+        //去重
+        let arr3 =[...new Set([...arr1,...arr2])] 
+        //交集
+        let arr4 = [...new Set(arr1)].filter((item)=>{
+          return arr2.includes(item)
+        })
+
+        //差集
+        let arr5 = arr3.filter((item)=>{
+          return !arr1.includes(item) || !arr2.includes(item)
+        })
+        console.log(arr5)
+      }
+
+
+    
+    
+    </script>
+    <!-- <script src='../src/手写代码系列/第一轮/test.js'></script>  -->
+
+
+  
   </body>
 </html>

@@ -7,38 +7,38 @@ const routes = [
   {
     path: '/',
     name: 'datepicker',
-    component: () => import(/* webpackChunkName: "about" */ '../views/DatePicker')
+    component: () => import( '../views/DatePicker')
   },
  
   {
     path: '/todo',
     name: 'todo',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Todo/index')
+    component: () => import( '../views/Todo/index')
   },
   {
     path: '/datepicker',
     name: 'datepicker',
-    component: () => import(/* webpackChunkName: "about" */ '../views/DatePicker')
+    component: () => import( '../views/DatePicker')
   },
    {
       path: '/myswiper',
       name: 'myswiper',
-      component: () => import(/* webpackChunkName: "about" */ '../views/ShowSwiper')
+      component: () => import( '../views/ShowSwiper')
    },
    {
       path: '/mytree',
       name: 'mytree',
-      component: () => import(/* webpackChunkName: "about" */ '../views/Mytree/Entry')
+      component: () => import( '../views/Mytree/Entry')
    },
    {
     path: '/emit',
     name: 'emit',
-    component: () => import(/* webpackChunkName: "about" */ '../views/emit/parent')
+    component: () => import( '../views/emit/parent')
    },
    {
     path: '/cascader',
     name: 'cascader',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Cascader')
+    component: () => import( '../views/Cascader')
  }
 
 ]
