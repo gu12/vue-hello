@@ -17,64 +17,64 @@ export default {
   },
   data() {
     return {
-      options: [
-        {
-          value: 1,
-          label: "东南地区",
-          children: [
-            {
-              value: 2,
-              label: "上海",
-              children: [
-                { value: 3, label: "普陀" },
-                { value: 4, label: "黄埔" },
-                { value: 5, label: "徐汇" }
-              ]
-            },
-            {
-              value: 7,
-              label: "江苏",
-              children: [
-                { value: 8, label: "南京" },
-                { value: 9, label: "苏州" },
-                { value: 10, label: "无锡" }
-              ]
-            },
-            {
-              value: 12,
-              label: "浙江",
-              children: [
-                { value: 13, label: "杭州" },
-                { value: 14, label: "宁波" },
-                { value: 15, label: "嘉兴" }
-              ]
-            }
-          ]
-        },
-        {
-          value: 17,
-          label: "西北地区",
-          children: [
-            {
-              value: 18,
-              label: "陕西",
-              children: [
-                { value: 19, label: "西安" },
-                { value: 20, label: "延安" }
-              ]
-            },
-            {
-              value: 21,
-              label: "新疆维吾尔族自治区",
-              children: [
-                { value: 22, label: "乌鲁木齐" },
-                { value: 23, label: "克拉玛依" }
-              ]
-            }
-          ]
+      options: [{
+          value: 'zhinan',
+          label: '数码',
+          children: [{
+            value: 'shejiyuanze',
+            label: '手机',
+            children: [{
+              value: 'yizhi',
+              label: '苹果'
+            }, {
+              value: 'fankui',
+              label: '华为'
+            }, {
+              value: 'xiaolv',
+              label: '三星'
+            }, {
+              value: 'kekong',
+              label: '小米'
+            }]
+          }, {
+            value: '',
+            label: '笔记本电脑',
+            children: [{
+              value: 'cexiangdaohang',
+              label: 'Macbook Pro'
+            }, {
+              value: 'dingbudaohang',
+              label: 'iMac'
+            }]
+          }]
+        }, {
+          value: 'zujian',
+          label: '家电',
+          children: [{
+            value: 'basic',
+            label: '空调',
+            children: [{
+              value: 'layout',
+              label: '格力'
+            }, {
+              value: 'color',
+              label: '美的'
+            }]
+          }, 
+          {
+            value: 'basic',
+            label: '洗衣机',
+            children: [{
+              value: 'layout',
+              label: '西门子'
+            }, {
+              value: 'color',
+              label: '松下'
+            }]
+          },]
         }
       ]
-    };
   }
-};
+}
+}
 </script>
